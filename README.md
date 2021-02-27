@@ -1,8 +1,6 @@
 # MicroMetabolism Database
 A database showing the incredible diversity of microbial metabolism.  Go <a href="https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/">here</a> to see a working prototype.
 
-Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
-
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
 
