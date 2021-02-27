@@ -1,9 +1,6 @@
-[![MicroMetabolism](https://github.com/thackmann/MicroMetabolismDatabase/blob/main/logo.svg)](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/)
+# [![MicroMetabolism](https://github.com/thackmann/MicroMetabolismDatabase/blob/main/logo.svg)](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/)
 
----
 ## A database showing the incredible diversity of microbial metabolism.  Click [here](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/) to see a working prototype.
-
----
 
 In addition to being available on the web, MicroMetabolism is available for download as an RShiny app.  
 
