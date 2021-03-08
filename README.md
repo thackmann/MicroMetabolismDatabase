@@ -1,4 +1,4 @@
-# [![MicroMetabolism](https://github.com/thackmann/MicroMetabolismDatabase/blob/main/logo.svg)](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/)
+# <a href="https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/"><img src="https://github.com/thackmann/MicroMetabolismDatabase/blob/main/logo.svg" width="500"/></a>
 
 ## A database showing the incredible diversity of microbial metabolism.  Click [here](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/) to see a working prototype.
 
