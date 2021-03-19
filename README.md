@@ -2,7 +2,7 @@
 
 ## A database showing the incredible diversity of microbial metabolism.  Click [here](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/) to see a working prototype.
 
-In addition to being available on the web, MicroMetabolism is available for download as an RShiny app.  
+In addition to being available on the web, MicroMetabolism is available for download as an R Shiny app (see Shiny folder).
 
 #
 
