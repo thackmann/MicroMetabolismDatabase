@@ -12,7 +12,7 @@ library(gridExtra)
 library(tidyr)
 library(shinycssloaders)
 library(stringr)
-icons::download_fontawesome()
+library(icons)
 
 ###################
 #Load internal data
@@ -22,9 +22,11 @@ data_fp = "data/database.csv"
 raw_data = read.csv(data_fp, stringsAsFactors=FALSE)
 raw_data[is.na(raw_data)] = "NA"
 
-#Example query for predict from taxa
 data_fp = "data/query.csv"
 example_query = read.csv(data_fp, stringsAsFactors=FALSE)
+
+#Icons
+app_icons <- icon_set("icons")
 
 #################
 #Define functions
@@ -32,9 +34,9 @@ example_query = read.csv(data_fp, stringsAsFactors=FALSE)
 #Define navigation buttons found on home page
   navigation_button <- function(title_box, image_name, button_name) {
     div(class="landing-page-box",
-        div(title_box, class = "landing-page-box-title"),
-        div(class = "landing-page-icon", style= paste0("background-image: url(", image_name, ".svg);
-            background-size: auto 100%; background-position: center; background-repeat: no-repeat; ")),
+        div(class = "landing-page-icon", tags$img(src=paste0(image_name, ".svg"), style="display: block; max-width: 100%; max-height: 175px; height:  auto; margin: 0 auto;"),
+        div(title_box, class = "landing-page-box-title", style="margin:  auto")
+    ),
         actionButton(button_name, NULL, class="landing-page-button")
     )
   }
@@ -298,6 +300,8 @@ ui <-
       #All tabs/elements
       useShinydashboard(), 
       #Navigation bar
+        #Shadow
+        tags$style(type="text/css", "nav {box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);}"),
       #Brand logo
       tags$head(
         tags$style(HTML('.navbar-brand {
@@ -339,31 +343,25 @@ ui <-
           
         #Navigation icons
         tags$style('
-          .landing-page-box { width:100%; height:100%; min-height:15vh; background-color:white;
-          border: 3px solid #3C8DBC; margin-bottom: 5px; float: left; 
-          border-radius: 25px;
-          transition: 0.5s ease; position: relative; object-fit: scale-down;}
+          .landing-page-box {width:100%; height:100%; background-color:white; transition: 0.5s ease; position: relative; object-fit: scale-down;}
         '),
         
         tags$style('
-          .landing-page-box:hover {-webkit-transform: scale(1.05); 
-          -ms-transform: scale(1.05); transform: scale(1.05); } 
+          .landing-page-box:hover {-webkit-transform: scale(1.05); -ms-transform: scale(1.05); transform: scale(1.05); } 
         '),
         
         tags$style('
-          .landing-page-button { position: absolute; top:0; width: 100%; 
-          height: 100%; opacity: 0;}'
+          .landing-page-button { position: absolute; top:0; width: 100%; height: 100%; opacity: 0;}'
         ),
         
         tags$style('        
-          .landing-page-icon {width:100%; height:75%; min-height:10vh;
-              border: 0 ; padding-top: 4vh; object-fit: scale-down; }
+          .landing-page-icon {width:100%; height:75%; min-height:10vh; border: 0 ; padding-top: 0vh; object-fit: scale-down; }
         '),
         
         tags$style('
-          .landing-page-box-title {font-size: 15px; text-align:center; color: #3C8DBC;
+          .landing-page-box-title {font-size: clamp(1px, 1.5vw, 15px); text-align:center; #color: #000000;
             font-weight: bold; background-color: none; width:100%; 
-            max-height: 20px; margin-top: 0vh;}
+            max-height: 15px; margin-top: 0vh;}
          '),
         
         #Footer
@@ -388,20 +386,20 @@ ui <-
           #HOME--------------------------------------------------------------------------------------  
           tabPanel(
             value="home",
-            title=div(icons::fontawesome("home", style = "solid"), "Home"),
+            title=div(app_icons$home, "Home"),
             splitLayout(
               p(""),
               p(h3("Welcome to MicroMetabolism")),
               p(""),
               cellWidths = c("8.3333%","91.667%", "8.3333%"),
-              cellArgs = list(style = "padding-left: 10px; padding-right: 10px; white-space: normal")
+              cellArgs = list(style = "padding-left: 1vw; padding-right: 1vw; white-space: normal")
             ),
             splitLayout(
               p(""),
               p(h5("With metabolic information on thousands of microbes, MicroMetabolism can help you unravel what microbes are doing in the system you study.  Get started by choosing an option below.")),
               p(""),
               cellWidths = c("8.3333%","91.667%", "8.3333%"),
-              cellArgs = list(style = "padding-left: 10px; padding-right: 10px; white-space: normal")
+              cellArgs = list(style = "padding-left: 1vw; padding-right: 1vw; white-space: normal")
             ),
             splitLayout(
               p(""),
@@ -409,24 +407,23 @@ ui <-
               p("", navigation_button(button_name = 'jump_database_by_taxa', image_name="database_by_taxa", title_box = "Database by taxa")),
               p("", navigation_button(button_name = 'jump_predict_from_taxa', image_name="predict_from_taxa", title_box = "Predict from taxa")),
               p("", navigation_button(button_name = 'jump_predict_from_text', image_name="predict_from_text", title_box = "Predict from text")),
+              p("", navigation_button(button_name = 'jump_download_database', image_name="download_database", title_box = "Download database")),
               p(""),
-              cellWidths = c("8.3333%","20.8333%","20.8333%","20.8333%","20.8333%", "8.3333%"),
-              cellArgs = list(style = "padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;")
+              cellWidths = c("8.3333%","16.6666%","16.6666%","16.6666%","16.6666%", "16.6666%"),
+              cellArgs = list(style = "padding-left: 1vw; padding-right: 1vw; padding-top: 1vh; padding-bottom: 1vw; margin-top: -1vh;")
             ),
             splitLayout(
               p(""),
-              p(""),
-              p("", navigation_button(button_name = 'jump_download_database', image_name="download_database", title_box = "Download database")),
               p("", navigation_button(button_name = 'jump_neural_nets_tutorial', image_name="neural_nets_tutorial", title_box = "Neural nets tutorial")),
+              p("", navigation_button(button_name = 'jump_help', image_name="help", title_box = "Help")),
               p(""),
-              p(""),
-              cellWidths = c("8.3333%","20.8333%","20.8333%","20.8333%","20.8333%", "8.3333%"),
-              cellArgs = list(style = "padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;")
+              cellWidths = c("33.3333%","16.6666%","16.6666%","33.3333%"),
+              cellArgs = list(style = "padding-left: 1vw; padding-right: 1vw; padding-top: 1vh; padding-bottom: 1vw; margin-top: -2vh;")
             )
           ),
           
           #DATABASE--------------------------------------------------------------------------------------------
-          navbarMenu(title=div(icons::fontawesome("database", style = "solid"), "Database"),
+          navbarMenu(title=div(app_icons$database, "Database"),
                      
                      #DATABASE BY TRAIT--------------------------------------------------------------------------------------
                      tabPanel(
@@ -445,8 +442,8 @@ ui <-
                          selectInput("metabolite", "Metabolite", choices=choices_metabolite),
                          checkboxGroupInput(inputId="database_trait_taxonomy", label="Taxonomy", choices=list("Bergey","NCBI"), selected=list("Bergey", "NCBI"), inline=TRUE),
                          radioButtons(inputId="database_trait_AI", label="Neural net predictions", choiceNames = list("Show","Hide"), choiceValues = list("Show","Hide"), inline=TRUE),
-                         
-                       ),
+                         actionButton("database_trait_reset", "Reset selection")
+                        ),
                        mainPanel(
                          width=9,
                          useShinyjs(),
@@ -494,12 +491,12 @@ ui <-
                        ),
                        sidebarPanel(
                          width=3, #style = "box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);", #style = "background-color:#cccccc;",
-                         selectizeInput("taxa_phylum", div("Phylum", icons::fontawesome("question-circle", style = "solid")), choices=c("Any", raw_data$Phylum)),
-                         selectizeInput("taxa_class", div("Class", icons::fontawesome("question-circle", style = "solid")), choices=c("Any", raw_data$Class)),
-                         selectizeInput("taxa_order", div("Order", icons::fontawesome("question-circle", style = "solid")), choices=c("Any", raw_data$Order)),
-                         selectizeInput("taxa_family", div("Family", icons::fontawesome("question-circle", style = "solid")), choices=c("Any", raw_data$Family)),
-                         selectizeInput("taxa_genus", div("Genus", icons::fontawesome("question-circle", style = "solid")), choices=c("Any", raw_data$Genus)),
-                         selectizeInput("taxa_species", div("Species", icons::fontawesome("question-circle", style = "solid")), choices=c("Any", raw_data$Species)),
+                         selectizeInput("taxa_phylum", div("Phylum"), choices=c("Any", raw_data$Phylum)),
+                         selectizeInput("taxa_class", div("Class"), choices=c("Any", raw_data$Class)),
+                         selectizeInput("taxa_order", div("Order"), choices=c("Any", raw_data$Order)),
+                         selectizeInput("taxa_family", div("Family"), choices=c("Any", raw_data$Family)),
+                         selectizeInput("taxa_genus", div("Genus"), choices=c("Any", raw_data$Genus)),
+                         selectizeInput("taxa_species", div("Species"), choices=c("Any", raw_data$Species)),
                          checkboxGroupInput(inputId="database_taxa_taxonomy", label="Taxonomy", choices=list("Bergey","NCBI"), selected=list("Bergey", "NCBI"), inline=TRUE),
                          radioButtons(inputId="database_taxa_AI", label="Neural net predictions", choiceNames = list("Show","Hide"), choiceValues = list("Show","Hide"), inline=TRUE),
                          actionButton("database_taxa_reset", "Reset selection")
@@ -545,7 +542,7 @@ ui <-
           ),
           
           #PREDICT--------------------------------------------------------------------------------------  
-          navbarMenu(title=div(icons::fontawesome("desktop", style = "solid"), "Predict"),
+          navbarMenu(title=div(app_icons$desktop, "Predict"),
                      
                      #PREDICT FROM TAXA--------------------------------------------------------------------------------------
                      tabPanel(
@@ -615,7 +612,7 @@ ui <-
           #DOWNLOAD--------------------------------------------------------------------------------------       
           tabPanel(
             value="download_database", 
-            title=div(icons::fontawesome("download", style = "solid"), "Download"),
+            title=div(app_icons$download, "Download"),
             splitLayout(
               p(""),
               p(h3("Download database")),
@@ -642,7 +639,7 @@ ui <-
           #NEURAL NETS TUTORIAL--------------------------------------------------------------------------------------  
           tabPanel(
             value="neural_nets_tutorial", 
-            title=div(icons::fontawesome("graduation-cap", style = "solid"), "Tutorial"),
+            title=div(app_icons$`graduation-cap`, "Tutorial"),
               fluidRow(
                 column(width=10, offset=1,
                        h3("Neural nets tutorial"),
@@ -673,7 +670,7 @@ ui <-
           #HELP--------------------------------------------------------------------------------------       
           tabPanel(
             value="help", 
-            title=div(icons::fontawesome("question-circle", style = "solid"), "Help"),
+            title=div(app_icons$`question-circle`, "Help"),
             splitLayout(
               p(""),
               p(h3("Help")),
@@ -750,10 +747,24 @@ server <- function(input, output, session) {
       observeEvent(input$jump_neural_nets_tutorial, ignoreInit=TRUE, {
         updateNavbarPage(session, inputId="tabs", selected = "neural_nets_tutorial")
       })
+      observeEvent(input$jump_help, ignoreInit=TRUE, {
+        updateNavbarPage(session, inputId="tabs", selected = "help")
+      })
     }    
     
     #DATABASE BY TRAIT--------------------------------------------------------------------------------------
     if(input$tabs == "database_by_trait"){
+      
+      #Reset choices in selectize input objects (drop down menus)
+      observeEvent(input$database_trait_reset,{
+        updateSelectInput(session, "metabolism_type",  selected="Any")
+        updateSelectInput(session, "carbon_source", selected="Any")
+        updateSelectInput(session, "energy_source", selected="Any")
+        updateSelectInput(session, "electron_source", selected="Any")
+        updateSelectInput(session, "electron_acceptor", selected="Any")
+        updateSelectInput(session, "metabolite", selected="Any")
+      },
+      ignoreNULL = TRUE,  ignoreInit=TRUE)
       
       #Get raw data and filter
       get_data = eventReactive({input$database_trait_taxonomy
