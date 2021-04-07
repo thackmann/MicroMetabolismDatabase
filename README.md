@@ -2,21 +2,21 @@
 
 ## A database showing the incredible diversity of microbial metabolism.  
 
-## Web version
+### Web version
 Click [here](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/) to access.
 
-## Download as R Shiny app
+### Download as R Shiny app
 1)  In the menu above, click `Code` -> `Download ZIP`.
 2) Upzip the downloaded folder, locate `app.R`, open in R Studio, and click `Run app`.
 
-## Download as Docker image
+### Download as Docker image
 1)  In command prompt, run
  `
  docker run -p 3838:3838 tjhackmann/micrometabolismdatabase:latest
  `
 2)  Open browser with address http://localhost:3838/.  Refresh browser periodically until database loads.
 
-## Troubleshooting
+### Troubleshooting
 
 * <a href= "https://github.com/thackmann/MicroMetabolism/blob/main/troubleshoot/cannot-run-TensorFlow.md">R Studio reports `Error: Installation of TensorFlow not found`."</a>
 * <a href= "https://github.com/thackmann/MicroMetabolism/blob/main/troubleshoot/cannot-run-TensorFlow.md">R Studio reports `Error in library(X) : there is no package called ‘X’`"</a>
