@@ -18,8 +18,8 @@ Click [here](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/) to 
 
 ### Troubleshooting
 
-* <a href= "https://github.com/thackmann/MicroMetabolism/blob/main/troubleshoot/cannot-run-TensorFlow.md">R Studio reports `Error: Installation of TensorFlow not found`."</a>
-* <a href= "https://github.com/thackmann/MicroMetabolism/blob/main/troubleshoot/cannot-run-TensorFlow.md">R Studio reports `Error in library(X) : there is no package called ‘X’`"</a>
+* <a href= "https://github.com/thackmann/MicroMetabolismDatabase/blob/main/troubleshoot/cannot-run-TensorFlow.md">R Studio reports `Error: Installation of TensorFlow not found`."</a>
+* <a href= "https://github.com/thackmann/MicroMetabolismDatabase/blob/main/troubleshoot/cannot-find-R-package.md">R Studio reports `Error in library(X) : there is no package called ‘X’`"</a>
 
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
