@@ -7,7 +7,7 @@ Click [here](https://timothy-hackmann.shinyapps.io/MicroMetabolismDatabase/) to 
 
 ### Download as R Shiny app
 1)  In the menu above, click `Code` -> `Download ZIP`.
-2) Upzip the downloaded folder, locate `app.R`, open in R Studio, and click `Run app`.
+2) Upzip the downloaded folder, locate `app.R`, open in R Studio, and click `Run App`.
 
 ### Download as Docker image
 1)  In command prompt, run
